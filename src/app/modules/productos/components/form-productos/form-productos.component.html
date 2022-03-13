@@ -1,0 +1,33 @@
+<h1 mat-dialog-title>{{ id ? 'Editar' : 'Crear'}} Producto</h1>
+<form [formGroup]="form" (ngSubmit)="submit()">
+
+    <mat-dialog-content class="mat-typography">
+
+        <div>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Nombre</mat-label>
+                <input type="text" maxlength="50" matInput formControlName="nombre" placeholder="Nombre">
+                <mat-error *ngIf="form.get('nombre')?.hasError('required')">
+                    El nombre es <strong>requerido</strong>
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Valor unitario</mat-label>
+                <input type="number" min="1" matInput formControlName="valorUnitario" placeholder="Valor unitario">
+                <mat-error *ngIf="form.get('nombre')?.hasError('required')">
+                    El valor unitario es <strong>requerido</strong>
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+
+
+
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>Cancelar</button>
+        <button mat-button cdkFocusInitial type="submit">Guardar</button>
+    </mat-dialog-actions>
+</form>
