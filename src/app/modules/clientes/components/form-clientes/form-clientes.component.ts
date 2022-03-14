@@ -63,7 +63,6 @@ export class FormClientesComponent implements OnInit {
                 this.dialogRef.close(false);
             },
         });
-        this.dialogRef.close(true);
     }
 
     getCliente(id: number) {

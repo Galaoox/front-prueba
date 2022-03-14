@@ -60,7 +60,6 @@ export class FormProductosComponent implements OnInit {
                 this.dialogRef.close(false);
             },
         });
-        this.dialogRef.close(true);
     }
 
     getProducto(id: number) {
