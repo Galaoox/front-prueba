@@ -31,8 +31,10 @@ export class FormProductosComponent implements OnInit {
     }
 
     submit() {
-        const data = this.form.value;
-        this.id ? this.updateProducto(this.id, data) : this.insertProducto(data);
+        if (this.form.valid) {
+            const data = this.form.value;
+            this.id ? this.updateProducto(this.id, data) : this.insertProducto(data);
+        }
     }
 
     insertProducto(data: IProducto) {
