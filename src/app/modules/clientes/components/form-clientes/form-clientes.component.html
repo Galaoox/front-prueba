@@ -21,7 +21,7 @@
 
         <mat-form-field appearance="fill">
             <mat-label>Cedula</mat-label>
-            <input type="number" min="1" matInput formControlName="cedula" placeholder="Cedula">
+            <input type="text" maxlength="15" matInput formControlName="cedula" placeholder="Cedula">
             <mat-error *ngIf="form.get('cedula')?.hasError('required')">
                 La cedula es <strong>requerida</strong>
             </mat-error>

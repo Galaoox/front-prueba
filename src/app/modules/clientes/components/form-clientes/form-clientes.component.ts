@@ -27,7 +27,7 @@ export class FormClientesComponent implements OnInit {
         return this.fb.group({
             nombre: ['', [Validators.required, Validators.maxLength(50)]],
             apellido: ['', [Validators.required, Validators.maxLength(50)]],
-            cedula: ['', [Validators.required, Validators.maxLength(10)]],
+            cedula: ['', [Validators.required, Validators.maxLength(15)]],
             telefono: ['', [Validators.required, Validators.maxLength(15)]],
         });
     }
