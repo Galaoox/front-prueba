@@ -16,6 +16,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
+const MaterialComponents = [
+    MatTableModule,
+    MatPaginatorModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatDialogModule,
+    MatInputModule,
+]
+
 @NgModule({
     declarations: [
         ProductosComponent,
@@ -25,14 +34,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     imports: [
         CommonModule,
         ProductosRoutingModule,
-        MatTableModule,
-        MatPaginatorModule,
-        MatButtonModule,
-        MatMenuModule,
-        MatDialogModule,
-        MatInputModule,
         FormsModule,
         ReactiveFormsModule,
+        MaterialComponents
     ],
     providers: [ProductosService]
 })

@@ -1,0 +1,43 @@
+<h1 mat-dialog-title>{{ id ? 'Editar' : 'Crear'}} Cliente</h1>
+<form [formGroup]="form" (ngSubmit)="submit()">
+
+    <mat-dialog-content class="mat-typography container-grid">
+
+        <mat-form-field appearance="fill">
+            <mat-label>Nombre</mat-label>
+            <input type="text" maxlength="50" matInput formControlName="nombre" placeholder="Nombre">
+            <mat-error *ngIf="form.get('nombre')?.hasError('required')">
+                El nombre es <strong>requerido</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Apellido</mat-label>
+            <input type="text" maxlength="50" matInput formControlName="apellido" placeholder="Apellido">
+            <mat-error *ngIf="form.get('apellido')?.hasError('required')">
+                El apellido es <strong>requerido</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Cedula</mat-label>
+            <input type="number" min="1" matInput formControlName="cedula" placeholder="Cedula">
+            <mat-error *ngIf="form.get('cedula')?.hasError('required')">
+                La cedula es <strong>requerida</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Telefono</mat-label>
+            <input type="text" maxlength="15" matInput formControlName="telefono" placeholder="Telefono">
+            <mat-error *ngIf="form.get('telefono')?.hasError('required')">
+                El telefo es <strong>requerido</strong>
+            </mat-error>
+        </mat-form-field>
+
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>Cancelar</button>
+        <button mat-button cdkFocusInitial type="submit">Guardar</button>
+    </mat-dialog-actions>
+</form>

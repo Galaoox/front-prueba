@@ -1,42 +1,47 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { IProducto } from '@interfaces/IProducto';
-import { ProductosService } from '@services/productos.service';
-
+import { ICliente } from '@interfaces/ICliente';
+import { ClientesService } from '@services/clientes.service';
 
 @Component({
-    selector: 'app-form-productos',
-    templateUrl: './form-productos.component.html',
-    styleUrls: ['./form-productos.component.css']
+    selector: 'app-form-clientes',
+    templateUrl: './form-clientes.component.html',
+    styleUrls: ['./form-clientes.component.css']
 })
-export class FormProductosComponent implements OnInit {
+export class FormClientesComponent implements OnInit {
+
     id?: number;
     form: FormGroup;
 
-    constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData, private fb: FormBuilder, private dialogRef: MatDialogRef<FormProductosComponent>, private _productoService: ProductosService) {
+    constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData, private fb: FormBuilder, private dialogRef: MatDialogRef<FormClientesComponent>, private _clientesService: ClientesService) {
         this.id = data.id;
         this.form = this.createForm();
     }
 
     ngOnInit(): void {
-        if (this.id) this.getProducto(this.id);
+        if (this.id) this.getCliente(this.id);
     }
 
     createForm() {
         return this.fb.group({
             nombre: ['', [Validators.required, Validators.maxLength(50)]],
-            valorUnitario: ['', [Validators.required]],
+            apellido: ['', [Validators.required, Validators.maxLength(50)]],
+            cedula: ['', [Validators.required, Validators.maxLength(10)]],
+            telefono: ['', [Validators.required, Validators.maxLength(15)]],
         });
     }
 
     submit() {
-        const data = this.form.value;
-        this.id ? this.updateProducto(this.id, data) : this.insertProducto(data);
+        if (this.form.valid) {
+            const data = this.form.value;
+            this.id ? this.updateCliente(this.id, data) : this.insertCliente(data);
+        }
+
     }
 
-    insertProducto(data: IProducto) {
-        this._productoService.createProducto(data).subscribe({
+    insertCliente(data: ICliente) {
+        this._clientesService.createCliente(data).subscribe({
             next: (res) => {
                 this.dialogRef.close(true);
             },
@@ -48,8 +53,8 @@ export class FormProductosComponent implements OnInit {
 
     }
 
-    updateProducto(id: number, data: IProducto) {
-        this._productoService.updateProducto(id, data).subscribe({
+    updateCliente(id: number, data: ICliente) {
+        this._clientesService.updateCliente(id, data).subscribe({
             next: (res) => {
                 this.dialogRef.close(true);
             },
@@ -61,8 +66,8 @@ export class FormProductosComponent implements OnInit {
         this.dialogRef.close(true);
     }
 
-    getProducto(id: number) {
-        this._productoService.getProducto(id).subscribe({
+    getCliente(id: number) {
+        this._clientesService.getCliente(id).subscribe({
             next: (res) => {
                 this.form.patchValue(res.data);
             },
@@ -71,8 +76,6 @@ export class FormProductosComponent implements OnInit {
             },
         });
     }
-
-
 
 }
 
